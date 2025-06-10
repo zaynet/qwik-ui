@@ -4,8 +4,72 @@ title: Qwik UI | Styled Tooltip Component
 
 import { statusByComponent } from '~/_state/component-statuses';
 
-# Tooltip
-
-Don't be a fool, use a Qwik UI Styled tooltip. or how we call it internally.. a fooltip! (WAT?)
+import { ShowcaseHero } from './showcase-components';
 
 <StatusBanner status={statusByComponent.styled.Tooltip} />
+
+# Tooltip
+
+A text label that appears when a user hovers, focuses, or touches an element.
+
+<ShowcaseHero />
+
+## Installation
+
+### Run the following cli command or copy/paste the component code into your project
+
+```sh
+qwik-ui add tooltip
+```
+
+```tsx
+import { type PropsOf, Slot, component$ } from '@builder.io/qwik';
+import { Tooltip as HeadlessTooltip } from '@qwik-ui/headless';
+import { cn } from '@qwik-ui/utils';
+
+const Root = component$<PropsOf<typeof HeadlessTooltip.Root>>(({ ...props }) => {
+  return (
+    <HeadlessTooltip.Root {...props}>
+      <Slot />
+    </HeadlessTooltip.Root>
+  );
+});
+
+const Trigger = HeadlessTooltip.Trigger;
+
+const Panel = component$<PropsOf<typeof HeadlessTooltip.Panel>>(({ ...props }) => {
+  return (
+    <HeadlessTooltip.Panel
+      {...props}
+      class={cn(
+        'w-fit text-balance rounded-md border bg-background px-3 py-1.5 text-xs text-foreground shadow animate-in fade-in-0 zoom-in-95',
+        'data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95',
+        'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
+        props.class,
+      )}
+    >
+      <Slot />
+    </HeadlessTooltip.Panel>
+  );
+});
+
+export const Tooltip = {
+  Root,
+  Trigger,
+  Panel,
+};
+
+```
+
+## Usage
+
+```tsx
+import { Tooltip } from '~/components/ui';
+```
+
+```tsx
+<Tooltip.Root>
+  <Tooltip.Trigger>Open Trigger</Tooltip.Trigger>
+  <Tooltip.Panel>Place your content here.</Tooltip.Panel>
+</Tooltip.Root>
+```

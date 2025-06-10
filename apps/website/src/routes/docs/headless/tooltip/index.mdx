@@ -4,6 +4,8 @@ title: Qwik UI | Tooltip
 
 import { statusByComponent } from '~/_state/component-statuses';
 
+import { ShowcaseHero, ShowcaseFloating, ShowcasePlacement, ShowcaseFlip, ShowcaseGutter, ShowcaseStyling, ShowcaseAnimation, ShowcaseTransition, ShowcaseOnChange, ShowcaseBasic, ShowcaseComplex } from './showcase-components';
+
 <StatusBanner status={statusByComponent.headless.Tooltip} />
 
 import Styles from './examples/styles';
@@ -12,14 +14,13 @@ import Styles from './examples/styles';
 
 A text label that appears when a user hovers, focuses, or touches an element.
 
-<Showcase name="hero" />
+<ShowcaseHero />
 
 <FeatureList
   features={[
     `Opens on hover or focus`,
     'Closes on trigger activation or Escape key press',
     'Customizable open/close delays',
-    'Optional arrow component',
     'Always portaled content',
     'Accessibility with ARIA roles and keyboard interactions',
     'Flipping to avoid overflow',
@@ -42,7 +43,6 @@ export default component$(() => {
         <button>Hover or Focus me</button>
       </Tooltip.Trigger>
       <Tooltip.Panel aria-label="Tooltip content">
-        <Tooltip.Arrow width={10} height={5} />
         Tooltip content here
       </Tooltip.Panel>
     </Tooltip.Root>
@@ -65,10 +65,6 @@ export default component$(() => {
     {
       name: 'Tooltip.Panel',
       description: `An HTML element that contains the tooltip content.`,
-    },
-    {
-      name: 'Tooltip.Arrow',
-      description: `An optional arrow component to point to the trigger element.`,
     },
   ]}
 />
@@ -125,7 +121,7 @@ Tooltips show when hovering over or focusing on the trigger element and dismiss 
 
 By default, the Qwik UI Tooltip will float above the trigger component.
 
-<Showcase name="floating" />
+<ShowcaseFloating />
 
 To make a tooltip float, we use JavaScript to choose where the tooltip should be positioned.
 
@@ -135,7 +131,7 @@ By default, tooltips will float above the trigger component.
 
 When setting `placement` on the root, you can customize the position of the tooltip.
 
-<Showcase name="placement" />
+<ShowcasePlacement />
 
 Above we have set the `placement` prop to `right`, so the `<Tooltip.Panel>` will be positioned to the right of the trigger.
 
@@ -143,7 +139,7 @@ Above we have set the `placement` prop to `right`, so the `<Tooltip.Panel>` will
 
 Enabled by default, we can use the `flip` prop to flip its position based on the available space in the viewport.
 
-<Showcase name="flip" />
+<ShowcaseFlip />
 
 To disable flipping, set `flip={false}` on the `<Tooltip.Root>`.
 
@@ -151,7 +147,7 @@ To disable flipping, set `flip={false}` on the `<Tooltip.Root>`.
 
 The gutter property defines the space between the anchor element and the floating element.
 
-<Showcase name="gutter" />
+<ShowcaseGutter />
 
 ## Styling
 
@@ -159,7 +155,7 @@ Styles can be added normally like any other component in Qwik UI, such as adding
 
 If Tailwind is the framework of choice, then styles can be added using the [arbitrary variant syntax](https://tailwindcss.com/docs/hover-focus-and-other-states#using-arbitrary-variants) or [@apply](https://tailwindcss.com/docs/reusing-styles#extracting-classes-with-apply) command.
 
-<Showcase name="styling" />
+<ShowcaseStyling />
 
 > The arbitrary variant can be customized/abstracted even further by [adding a variant](https://tailwindcss.com/docs/plugins#adding-variants) as a plugin in the tailwind config.
 
@@ -171,7 +167,7 @@ Tooltips rely on animations and transitions to provide smooth entry and exit eff
 
 ### Keyframe Animation Example
 
-<Showcase name="animation" />
+<ShowcaseAnimation />
 
 Keyframes are used for complex entry and exit animations. In this case:
 
@@ -183,7 +179,7 @@ Keyframes are used for complex entry and exit animations. In this case:
 
 Transitions are ideal for animating properties like opacity and scale for smoother interactions:
 
-<Showcase name="transition" />
+<ShowcaseTransition />
 
 Here, transitions handle smooth opacity and scale changes. The `transition-behavior: allow-discrete` ensures that `display` and `overlay` animate properly.
 
@@ -194,7 +190,7 @@ Here, transitions handle smooth opacity and scale changes. The `transition-behav
 The tooltip contains a `onOpenChange$` event that runs when the tooltip opens or closes.
 This can be used to trigger additional actions when the tooltip is opened or closed.
 
-<Showcase name="onChange" />
+<ShowcaseOnChange />
 
 ## Additional References
 
@@ -274,10 +270,6 @@ To read more about tooltips you can check it out on:
       name: 'Tooltip.Panel',
       description: 'The container for the tooltip content.',
     },
-    {
-      name: 'Tooltip.Arrow',
-      description: 'An optional arrow component for the tooltip.',
-    },
   ]}
 />
 
@@ -285,8 +277,8 @@ To read more about tooltips you can check it out on:
 
 #### Basic:
 
-<Showcase name="basic" />
+<ShowcaseBasic />
 
 #### Complex HTML:
 
-<Showcase name="complex" />
+<ShowcaseComplex />
